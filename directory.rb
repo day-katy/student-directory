@@ -20,4 +20,5 @@ students.each do |student|
 end
 # finally, we print the total
 puts "Overall, we have #{students.count} great students"
-#it's important that print() doesn't add new line characters
+# it's important that print() doesn't add new line characters
+# I hope I haven't totally ruined this
