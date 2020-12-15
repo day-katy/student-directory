@@ -5,12 +5,19 @@ def input_students
   students = []
   # get the first name
   name = gets.chomp
+  puts "Please enter the cohort of the students".center(30)
+  cohort = gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
     #add the student hash to the array
-    students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students".center(30)
+    students << {name: name, cohort: cohort}
+    if students.count == 1
+      puts "Now we have #{students.count} student".center(30)
+    elsif students.count > 1
+      puts "Now we have #{students.count} students".center(30)
+    end
     name = gets.chomp
+    cohort = gets.chomp
   end
   # return the array of input_students
   students
@@ -30,7 +37,11 @@ def print(students)
 end
 
 def print_footer(students)
+  if students.count == 1
+    puts "Overall, we have #{students.count} great student"
+  elsif
   puts "Overall, we have #{students.count} great students".center(30)
+  end
 end
 
 students = input_students
