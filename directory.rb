@@ -17,17 +17,15 @@ def input_students
 end
 
 def print_header
-  puts "The studetns of Villains Academy"
+  puts "The students of Villains Academy"
   puts "-------------"
 end
 
 def print(students)
-  students.each do |student|
-    if student[:name].length < 12
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
-    else
-      return nil
-    end
+  n = 0
+  while n < students.length do
+    puts "#{students[n][:name]} (#{students[n][:cohort]} cohort)"
+    n += 1
   end
 end
 
