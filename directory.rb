@@ -1,6 +1,6 @@
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
+  puts "Please enter the names of the students".center(30)
+  puts "To finish, just hit return twice".center(30)
   # create an empty array
   students = []
   # get the first name
@@ -9,7 +9,7 @@ def input_students
   while !name.empty? do
     #add the student hash to the array
     students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
+    puts "Now we have #{students.count} students".center(30)
     name = gets.chomp
   end
   # return the array of input_students
@@ -17,20 +17,20 @@ def input_students
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(30)
+  puts "-------------".center(30)
 end
 
 def print(students)
   n = 0
   while n < students.length do
-    puts "#{students[n][:name]} (#{students[n][:cohort]} cohort)"
+    puts "#{students[n][:name]} (#{students[n][:cohort]} cohort)".center(30)
     n += 1
   end
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great students".center(30)
 end
 
 students = input_students
