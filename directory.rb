@@ -45,9 +45,18 @@ def print_footer(students)
 end
 
 students = input_students
-print_header
-print(students)
-print_footer(students)
+
+if input_students.empty?
+  puts "You need to enter names and cohorts; otherwise, I'm not printing anything."
+else
+  print_header
+  print(students)
+  print_footer(students)
+end
+
+
+
+
 # # let's put all students into an array
 # students = [
 #   {name: "Dr. Hannibal Lecter", cohort: :november},
