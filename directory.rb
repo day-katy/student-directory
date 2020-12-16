@@ -1,39 +1,70 @@
 def input_students
-  puts "Please enter the names of the students".center(30)
+  months = [:January, :February, :March, :April, :May, :June, :July, :August, :September, :October, :November, :December]
+  puts "Please enter the names of the students, and the cohorts they're in, separated by a comma".center(30)
   puts "To finish, just hit return twice".center(30)
-  # create an empty array
   students = []
-  # get the first name
-  name = gets.chomp
-  puts "Please enter the cohort of the students".center(30)
-  cohort = gets.chomp
-  # while the name is not empty, repeat this code
-  while !name.empty? do
-    #add the student hash to the array
-    students << {name: name, cohort: cohort}
-    if students.count == 1
-      puts "Now we have #{students.count} student".center(30)
-    elsif students.count > 1
+  name_cohort = gets.chomp
+  while !name_cohort.empty? do
+    name, cohort = name_cohort.split(", ")
+    if cohort != nil && months.include?(cohort.to_sym.capitalize)
+      students << {name: name, cohort: cohort.to_sym.capitalize}
+      puts "Now we have #{students.count} students".center(30)
+    elsif cohort != nil && !months.include?(cohort.to_sym.capitalize)
+      puts "Please enter a valid cohort".center(30)
+    elsif cohort == nil
+      students << {name: name, cohort: :November}
       puts "Now we have #{students.count} students".center(30)
     end
-    name = gets.chomp
-    cohort = gets.chomp
+    name_cohort = gets.chomp
   end
-  # return the array of input_students
   students
 end
+# def input_students
+#   months = [:January, :February, :March, :April, :May, :June, :July, :August, :September, :October, :November, :December]
+#   puts "Please enter the names of the students, and the cohorts they're in, separated by a comma".center(30)
+#   puts "To finish, just hit return twice".center(30)
+#   students = []
+#   name_cohort = gets.chomp
+#   while !name_cohort.empty? do
+#     name, cohort = name_cohort.split(", ")
+#     if cohort != nil && months.include?(cohort.to_sym.capitalize)
+#       students << {name: name, cohort: cohort.to_sym.capitalize}
+#       # if students.count == 1
+#       # puts "Now we have #{students.count} student".center(30)
+#       # elsif students.count > 1
+#       puts "Now we have #{students.count} students".center(30)
+#       # end
+#     elsif cohort == !nil && !months.include?(cohort.to_sym.capitalize)
+#       puts "Please enter a valid cohort".center(30)
+#     elsif cohort == nil
+#       students << {name: name, cohort: :November}
+#       puts "Now we have #{students.count} students".center(30)
+#     end
+#     name_cohort = gets.chomp
+#   end
+#   # return the array of input_students
+#   students
+# end
 
 def print_header
   puts "The students of Villains Academy".center(30)
   puts "-------------".center(30)
 end
 
-def print(students)
-  n = 0
-  while n < students.length do
-    puts "#{students[n][:name]} (#{students[n][:cohort]} cohort)".center(30)
-    n += 1
+def print(names)
+  puts "Which cohort would you like to see?"
+  answer = gets.chomp.to_sym.capitalize
+  sort_by_cohort = {}
+  names.each do |name|
+    cohort = name[:cohort]
+    name = name[:name]
+    if sort_by_cohort[cohort] == nil
+      sort_by_cohort[cohort] = [name]
+    else
+      sort_by_cohort[cohort].push(name)
+    end
   end
+  puts sort_by_cohort[answer]
 end
 
 def print_footer(students)
