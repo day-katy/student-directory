@@ -17,38 +17,12 @@ def input_students
     elsif cohort == nil
       students << {name: name, cohort: :November}
       puts "Now we have #{students.count} students".center(30)
-      end 
-    end
+      end
     name_cohort = gets.chomp
   end
+end
   students
 end
-# def input_students
-#   months = [:January, :February, :March, :April, :May, :June, :July, :August, :September, :October, :November, :December]
-#   puts "Please enter the names of the students, and the cohorts they're in, separated by a comma".center(30)
-#   puts "To finish, just hit return twice".center(30)
-#   students = []
-#   name_cohort = gets.chomp
-#   while !name_cohort.empty? do
-#     name, cohort = name_cohort.split(", ")
-#     if cohort != nil && months.include?(cohort.to_sym.capitalize)
-#       students << {name: name, cohort: cohort.to_sym.capitalize}
-#       # if students.count == 1
-#       # puts "Now we have #{students.count} student".center(30)
-#       # elsif students.count > 1
-#       puts "Now we have #{students.count} students".center(30)
-#       # end
-#     elsif cohort == !nil && !months.include?(cohort.to_sym.capitalize)
-#       puts "Please enter a valid cohort".center(30)
-#     elsif cohort == nil
-#       students << {name: name, cohort: :November}
-#       puts "Now we have #{students.count} students".center(30)
-#     end
-#     name_cohort = gets.chomp
-#   end
-#   # return the array of input_students
-#   students
-# end
 
 def print_header
   puts "The students of Villains Academy".center(30)
@@ -79,27 +53,31 @@ def print_footer(students)
   end
 end
 
-students = input_students
-print_header
-print(students)
-print_footer(students)
+def interactive_menu
+  students = []
+  loop do
+    # 1. print the menu and ask the user what to do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+    # 2. read the input and save it into a variable
+    selection = gets.chomp
+    # 3. do what the user has asked
+    case selection
+    when "1"
+      # input the students
+      students = input_students
+    when "2"
+      # show the students
+      print_header
+      print(students)
+      print_footer(students)
+    when "9"
+      exit # this will cause the program to terminate
+    else
+      puts "I don't know what you meant, try again"
+    end
+  end
+end
 
-
-
-
-
-# # let's put all students into an array
-# students = [
-#   {name: "Dr. Hannibal Lecter", cohort: :november},
-#   {name: "Darth Vader", cohort: :november},
-#   {name: "Nurse Ratched", cohort: :november},
-#   {name: "Michael Coreleone", cohort: :november},
-#   {name: "Alex DeLarge", cohort: :november},
-#   {name: "The Wicked Witch of the West", cohort: :november},
-#   {name: "Terminator", cohort: :november},
-#   {name: "Freddy Krueger", cohort: :november},
-#   {name: "The Joker", cohort: :november},
-#   {name: "Joffrey Baratheon", cohort: :november},
-#   {name: "Norman Bates", cohort: :november}
-# ]
-# # and then print them
+interactive_menu
