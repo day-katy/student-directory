@@ -19,7 +19,18 @@ def input_students
   end
 end
 
+def load_students(filename = "students.csv")
+  puts "You decided to load the students to a file"
+  file = File.open(filename, "r")
+  file.readlines.each do |line|
+    name, cohort = line.chomp.split(",")
+    @students << {name: name, cohort: cohort.to_sym}
+  end
+  file.close
+end
+
 def show_students
+  puts "You selected show students"
   print_header
   print_student_list
   print_footer
@@ -44,9 +55,10 @@ def print_footer
   end
 end
 
-def save_students
+def save_students(filename = "students.csv")
+  puts "You selected to save the students to a file"
   # open the file for writing
-  file = File.open("students.csv", "w")
+  file = File.open(filename, "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -56,16 +68,7 @@ def save_students
     file.close
 end
 
-def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(",")
-    @students << {name: name, cohort: cohort.to_sym}
-  end
-  file.close
-end
-
-def try_load_students
+def try_load_students(filename = "students.csv")
   filename = ARGV.first
   return if filename.nil?
   if File.exists?(filename)
